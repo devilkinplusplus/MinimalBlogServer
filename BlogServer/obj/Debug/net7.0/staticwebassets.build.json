@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "Hash": "0WFDQJb+npUGgSC0CukzGNAknac1QtrGFxaTFd2kjMg=",
+  "Source": "BlogServer",
+  "BasePath": "_content/BlogServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "BlogServer\\wwwroot",
+      "Source": "BlogServer",
+      "ContentRoot": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\",
+      "BasePath": "_content/BlogServer",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230724052808technologywindowsblackhdwindows.jpg",
+      "SourceId": "BlogServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\",
+      "BasePath": "_content/BlogServer",
+      "RelativePath": "uploads/blogs/20230724052808technologywindowsblackhdwindows.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\blogs\\20230724052808technologywindowsblackhdwindows.jpg"
+    },
+    {
+      "Identity": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\2023072405434917-fener.jpg",
+      "SourceId": "BlogServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\",
+      "BasePath": "_content/BlogServer",
+      "RelativePath": "uploads/blogs/2023072405434917-fener.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\blogs\\2023072405434917-fener.jpg"
+    }
+  ]
+}

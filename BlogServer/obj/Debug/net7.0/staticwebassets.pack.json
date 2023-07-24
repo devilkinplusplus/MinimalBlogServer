@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230724052808technologywindowsblackhdwindows.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230724052808technologywindowsblackhdwindows.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\2023072405434917-fener.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\2023072405434917-fener.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BlogServer.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.BlogServer.props",
+      "PackagePath": "build\\BlogServer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.BlogServer.props",
+      "PackagePath": "buildMultiTargeting\\BlogServer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.BlogServer.props",
+      "PackagePath": "buildTransitive\\BlogServer.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
