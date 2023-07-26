@@ -1,7 +1,9 @@
-﻿using BlogServer.Helpers.ImageHelper;
+﻿using BlogServer.DTOs;
+using BlogServer.Helpers.ImageHelper;
 using BlogServer.Models;
 using BlogServer.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace BlogServer.Endpoints.Blogs
@@ -15,22 +17,40 @@ namespace BlogServer.Endpoints.Blogs
                 var blogs = await blogService.GetAsync();
                 if(blogs.Succeeded)
                     return Results.Ok(blogs.Blogs);
-                return Results.Ok(blogs.Error);
+                return Results.NotFound(blogs.Error);
             });
 
             app.MapGet("/blogs/{id}", async (string id, BlogService blogService) =>
             {
-                var blog = await blogService.GetAsync(id);
-                return blog is null ? Results.NotFound("Not found") :
-                                      Results.Ok(blog);
+                var res = await blogService.GetAsync(id);
+                if (res.Succeeded)
+                    return Results.Ok(res.Blog);
+                return Results.NotFound(res.Error);
             });
 
-            app.MapPost("/blogs", [Authorize] async (Blog blog, BlogService blogService, HttpContext httpContext) =>
+            app.MapPost("/blog", [Authorize] async (BlogService blogService, HttpContext httpContext, ImageUploadHelper helper) =>
             {
                 if (httpContext.User.Identity?.IsAuthenticated == true)
                 {
+                    var form = await httpContext.Request.ReadFormAsync();
+                    string title = form["title"];
+                    string description = form["description"];
+                    string category = form["category"];
+                    IFormFile photoUrl = form.Files["photoUrl"];
+
+
+                    var results = await helper.UploadImageAsync(photoUrl);
                     string userId = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    await blogService.CreateAsync(blog, userId);
+                    Blog blog = new()
+                    {
+                        Title = title,
+                        Description = description,
+                        Category = category,
+                        PhotoUrl = results.pathName,
+                        CreatedDate = DateTime.UtcNow,
+                        UserId = userId
+                    };
+                    await blogService.CreateAsync(blog);
                     return Results.Created("Created", blog);
                 }
                 return Results.Unauthorized();

@@ -9,6 +9,54 @@
       "PackagePath": "staticwebassets\\uploads\\blogs\\2023072405434917-fener.jpg"
     },
     {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\2023072405500417-fener.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\2023072405500417-fener.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\2023072506013617-fener.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\2023072506013617-fener.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230725062114fenerbahce-logo.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230725062114fenerbahce-logo.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230725062217forestmossstoneswaterstreamnaturebushesgrassgreenleaves4khdnature-3840x2160.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230725062217forestmossstoneswaterstreamnaturebushesgrassgreenleaves4khdnature-3840x2160.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230725103601lightbluewindows11logomicrosoftminimalistoperatingsystem4khdwindows11-3840x2160.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230725103601lightbluewindows11logomicrosoftminimalistoperatingsystem4khdwindows11-3840x2160.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230725103749Black-Simple-Text-Deskstop-Wallpaper.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230725103749Black-Simple-Text-Deskstop-Wallpaper.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230725103839fener.jpg",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230725103839fener.jpg"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230726064739sync.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230726064739sync.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230726070810Kartel.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230726070810Kartel.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230726072309ValueVsRef.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230726072309ValueVsRef.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230726072407user.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230726072407user.png"
+    },
+    {
+      "Id": "F:\\VsCode\\Projects\\FullStack\\BlogApp\\backend\\BlogServer\\BlogServer\\wwwroot\\uploads\\blogs\\20230726072450sync.png",
+      "PackagePath": "staticwebassets\\uploads\\blogs\\20230726072450sync.png"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BlogServer.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

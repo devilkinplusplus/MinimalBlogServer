@@ -2,6 +2,7 @@
 using BlogServer.Models;
 using BlogServer.ResponseParameters;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver.Linq;
 using System.IdentityModel.Tokens.Jwt;
@@ -47,29 +48,32 @@ namespace BlogServer.Services
                 SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
                 if (result.Succeeded)
                 {
-                    string token = await CreateAccessToken(user);
+                    Token token = await CreateAccessToken(user);
                     return new() { Succeeded = true, Token = token };
                 }
                 return new() { Succeeded = false, Errors = new List<string>() { "Password is incorrect!" } };
             }
             return new() { Succeeded = false, Errors = new List<string>() { "User is not found!" } };
         }
-        public async Task<string> CreateAccessToken(User user)
+        public async Task<Token> CreateAccessToken(User user)
         {
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var expiration = DateTime.UtcNow.AddHours(1);
 
             var token = new JwtSecurityToken(
                         issuer: issuer,
                         audience: audience,
                         signingCredentials: credentials,
+                        expires:expiration,
                         claims: await AddUserValuesToTokenAsync(user)
                     );
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            return tokenHandler.WriteToken(token);
+            string accessToken = tokenHandler.WriteToken(token);
+            return new Token() { AccessToken = accessToken , Expiration =  expiration };
         }
         private async Task<List<Claim>> AddUserValuesToTokenAsync(User user)
         {

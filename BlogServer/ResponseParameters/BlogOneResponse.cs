@@ -2,10 +2,10 @@
 
 namespace BlogServer.ResponseParameters
 {
-    public class BlogListResponse
+    public class BlogOneResponse
     {
         public bool Succeeded { get; set; }
-        public IEnumerable<BlogDto> Blogs { get; set; }
+        public BlogDto Blog { get; set; }
         public string Error { get; set; }
     }
 }

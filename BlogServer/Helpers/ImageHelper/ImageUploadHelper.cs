@@ -29,7 +29,7 @@ namespace BlogServer.Helpers.ImageHelper
             await file.CopyToAsync(fileStream);
             await fileStream.FlushAsync();
             values.fileName = newFileName;
-            values.path = $"{uploadPath}\\{newFileName}";
+            values.path = $"{pathName}\\{newFileName}";
             return values;
         }
     }

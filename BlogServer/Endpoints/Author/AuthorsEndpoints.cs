@@ -24,7 +24,7 @@ namespace BlogServer.Endpoints.Author
                 LoginResponse response = await userService.LoginUserAsync(model.Username, model.Password);
                 if (response.Succeeded)
                     return Results.Ok(response.Token);
-                return Results.Ok(response.Errors);
+                return Results.BadRequest(response.Errors);
             });
 
             app.MapGet("/user/blogs", [Authorize] async (HttpContext context, BlogService blogService) =>

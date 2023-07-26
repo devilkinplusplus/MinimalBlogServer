@@ -23,14 +23,15 @@ namespace BlogServer.Services
 
         public async Task<BlogListResponse> GetAsync()
         {
-            IEnumerable<BlogListDto> blogList = _blogsCollection.Find(_ => true).ToList().Select(x => new BlogListDto
+            IEnumerable<BlogDto> blogList = _blogsCollection.Find(_ => true).ToList().Select(x => new BlogDto
             {
                 Id = x.Id,
                 Title = x.Title,
                 Description = x.Description,
                 Category = x.Category,
                 Author = _userService.GetUserFullNameById(x.UserId),
-                PhotoUrl = x.PhotoUrl
+                PhotoUrl = x.PhotoUrl,
+                CreatedDate = x.CreatedDate
             }).ToList();
             if (!blogList.Any())
                 return new() { Succeeded = false, Error = "There are no blogs" };
@@ -38,38 +39,55 @@ namespace BlogServer.Services
             return new() { Succeeded = true, Blogs = blogList };
         }
 
-        public async Task<Blog?> GetAsync(string id) =>
-        await _blogsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-
-        public async Task CreateAsync(Blog newBlog, string userId)
+        public async Task<BlogOneResponse> GetAsync(string id)
         {
-            newBlog.UserId = userId;
+            Blog blog = await _blogsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            if (blog is null)
+                return new() { Succeeded = false, Error = "There is no blog with this id" };
+            BlogDto blogDto = new()
+            {
+                Id = blog.Id,
+                Title = blog.Title,
+                Description = blog.Description,
+                Category = blog.Category,
+                Author = _userService.GetUserFullNameById(blog.UserId),
+                PhotoUrl = blog.PhotoUrl,
+                CreatedDate = blog.CreatedDate
+            };
+            return new() { Succeeded = true, Blog = blogDto };
+        }
+
+        public async Task CreateAsync(Blog newBlog)
+        {
             await _blogsCollection.InsertOneAsync(newBlog);
         }
         public async Task UpdateAsync(string id, Blog updatedBlog)
         {
             await _blogsCollection.UpdateOneAsync(Builders<Blog>.Filter.Eq("Id", id),
-                        Builders<Blog>.Update.Set("Title", updatedBlog.Title).Set("Description", updatedBlog.Description).Set("Category", updatedBlog.Category));
+                        Builders<Blog>.Update.Set("Title", updatedBlog.Title)
+                        .Set("Description", updatedBlog.Description)
+                        .Set("Category", updatedBlog.Category));
         }
-        public async Task RemoveAsync(string id) =>
-            await _blogsCollection.DeleteOneAsync(x => x.Id == id);
+        public async Task RemoveAsync(string id) => await _blogsCollection.DeleteOneAsync(x => x.Id == id);
 
         public async Task WriteImageAsync(string pathName, string blogId)
         {
-            await _blogsCollection.UpdateOneAsync(Builders<Blog>.Filter.Eq("Id", blogId), Builders<Blog>.Update.Set("PhotoUrl", pathName));
+            await _blogsCollection.UpdateOneAsync(Builders<Blog>.Filter.Eq("Id", blogId),
+                                    Builders<Blog>.Update.Set("PhotoUrl", pathName));
         }
 
         public async Task<BlogListResponse> GetAuthorBlogs(string userId)
         {
             var blogs = await _blogsCollection.FindAsync(Builders<Blog>.Filter.Eq("UserId", userId));
-            IEnumerable<BlogListDto> blogList = blogs.ToList().Select(x => new BlogListDto
+            IEnumerable<BlogDto> blogList = blogs.ToList().Select(x => new BlogDto
             {
                 Id = x.Id,
                 Title = x.Title,
                 Description = x.Description,
                 Category = x.Category,
-                Author = x.UserId,
-                PhotoUrl = x.PhotoUrl
+                Author = _userService.GetUserFullNameById(x.UserId),
+                PhotoUrl = x.PhotoUrl,
+                CreatedDate = x.CreatedDate
             }).ToList();
 
             if (!blogList.Any())
