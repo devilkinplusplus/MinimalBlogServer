@@ -23,7 +23,9 @@ namespace BlogServer.Services
 
         public async Task<BlogListResponse> GetAsync()
         {
-            IEnumerable<BlogDto> blogList = _blogsCollection.Find(_ => true).ToList().Select(x => new BlogDto
+            var sortDescending = Builders<Blog>.Sort.Descending(x => x.CreatedDate);
+            IEnumerable<BlogDto> blogList = _blogsCollection.Find(_ => true).Sort(sortDescending).ToList()
+            .Select(x => new BlogDto
             {
                 Id = x.Id,
                 Title = x.Title,
@@ -55,6 +57,28 @@ namespace BlogServer.Services
                 CreatedDate = blog.CreatedDate
             };
             return new() { Succeeded = true, Blog = blogDto };
+        }
+
+        public async Task<BlogListResponse> GetRecommendeds(string id)
+        {
+            BlogOneResponse res = await GetAsync(id);
+            if (res.Succeeded)
+            {
+               IEnumerable<BlogDto> recommendedBlogs = _blogsCollection.Find(x=>x.Category == res.Blog.Category).ToList()
+                                    .Select(x=>new BlogDto
+                                    {
+                                        Id = x.Id,
+                                        Title = x.Title,
+                                        Description = x.Description,
+                                        PhotoUrl = x.PhotoUrl
+                                    }).ToList();
+
+                if (recommendedBlogs.Any())
+                {
+                    return new() { Blogs = recommendedBlogs ,Succeeded = true};
+                }
+            }
+            return new() { Succeeded = false, Error = "No recommendation" };
         }
 
         public async Task CreateAsync(Blog newBlog)

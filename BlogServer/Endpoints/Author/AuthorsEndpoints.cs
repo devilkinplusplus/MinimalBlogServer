@@ -16,7 +16,7 @@ namespace BlogServer.Endpoints.Author
                 UserResponse res = await userService.CreateUserAsync(user);
                 if (res.Succeeded)
                     return Results.Ok();
-                return Results.Ok(res.Errors);
+                return Results.BadRequest(res.Errors);
             });
 
             app.MapPost("/user/login", [AllowAnonymous] async (LoginDto model, UserService userService) =>
@@ -29,16 +29,11 @@ namespace BlogServer.Endpoints.Author
 
             app.MapGet("/user/blogs", [Authorize] async (HttpContext context, BlogService blogService) =>
             {
-                if (context.User.Identity?.IsAuthenticated == true)
-                {
-                    string userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    BlogListResponse res = await blogService.GetAuthorBlogs(userId);
-                    if(res.Succeeded)
-                        return Results.Ok(res.Blogs);
-                    return Results.Ok(res.Error);
-                }
-
-                return Results.Unauthorized();
+                string userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                BlogListResponse res = await blogService.GetAuthorBlogs(userId);
+                if(res.Succeeded)
+                    return Results.Ok(res.Blogs);
+                return Results.BadRequest(res.Error);
             });
 
             return app;
